@@ -1,0 +1,124 @@
+{% extends 'layout.html' %}
+{% block head %}{% endblock %}
+
+
+{% block header%}
+<section id="heading">
+    <div class="slider-overlay"></div>
+    <div class="homeslider flexslider">
+        <ul class="slides">
+            <li class="slide1 bg" style='display: list-item;'></li>
+        </ul>
+    </div>
+    <div class="banner">
+        <div class="bannerContent">
+            <div class="slide-text">
+               <div class="col-md-12 header-main">
+                <h2>Jaden Shek</h2>
+                <div id="slider" class="carousel slide" style="max-width: 100%; margin: 0px auto;" data-ride="carousel">
+                    <div class="bx-viewport carousel-inner" style="width: 100%; overflow: hidden; position: relative; height: 53px;">
+                        <div class="text-slider" style="width: auto; position: relative;">
+                            <div class="carousel-item active" style="float: none; position: absolute; width: 100%;" data-interval="7000">
+                                <h3>Student</h3>
+                            </div>
+                            <div class="carousel-item" style="float: none; position: absolute; width: 100%;" data-interval="7000">
+                                <h3>Musician</h3>
+                            </div>
+                            <div class="carousel-item"  style="float: none; position: absolute; width: 100%;" data-interval="7000">
+                               <h3>Technology Geek</h3>
+                      </div>
+                    </div>
+                    </div>
+                  </div>
+                <div class="bx-wrapper" style="max-width: 100%; margin: 0px auto;" data-ride='carousel'>
+                    <div class="bx-viewport carousel-inner" >
+                            
+                    </div>
+                </div>
+             <div class="header-social"></div>
+             <div class="intro-btn-main page-scroll">
+            <a class="btn btn-primary" href='{{ url_for("portfolio.tutoring") }}'>Tutoring</a>
+             <a class="btn btn-primary" href="#projects">Portfolio</a>
+             </div>
+            </div>
+           </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block content %}
+    <section class = 'main_content container'>
+        <section id='{{about_me.title}}' class='container'>
+            <!--About-->
+            <div class="anchor_grid">
+                <a id = "{{about_me.id}}" class='nav-skip' href=""></a>
+                <div class="content" id='about_me'>
+                    <div class="image">
+                        <div id="circle">
+                            <img src="{{ url_for('static', filename = 'images/Pfp.png') }}" alt="My Profile!" width='100%'>
+                        </div>
+                    </div>
+                    <div class='text'>
+                        <h2>{{about_me.title}}</h2>
+                        <p class ='introduction'>{{about_me.first_line}}</p>
+                        {% for text in about_me.content%}
+                            <p class = 'about_me_content'>{{text}}</p>
+                        {% endfor %}
+                    </div>
+                    <div class="shortcuts">
+                        <button type = 'button' class="btn btn-primary"><a href="#projects">Portfolio</a></button>
+                        <button type = 'button' class="btn btn-primary"><a href="#">Contact Me</a></button>
+                        <button type = 'button' class="btn btn-primary"><a href="https://exercism.io/profiles/Bombearo">Exercism Profile</a></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id='my_projects' class = 'container'>
+            <div class = 'anchor_grid'>
+                <!--Projects-->
+                <a id = "projects" class='nav-skip' href = '' height='5vh'></a>
+                <div class="content">
+                    <h2>Projects</h2>
+                    {% for i in range(5) %}
+                    <div class="work row">
+                        <div class="image">
+                            <img src="{{ url_for('static', filename='images/Temp_Background.jpg') }}" alt="Work image" width='100%' height='auto'>
+                        </div>
+                        <div class="work_content">
+                            <div class='work_heading'>
+                                <h4>Temp Title</h4>
+                                <a href="">Link To Github</a>
+                            </div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id dictum nisi, eget malesuada ipsum. Nam nec metus a metus cursus gravida ut ac orci. Sed malesuada sem sit amet ex lobortis, eget faucibus arcu semper. Duis vitae lacus nec ipsum posuere congue sit amet at lacus. Sed arcu nulla, commodo sed nisi sed, consectetur convallis neque. Donec gravida gravida urna, vitae ultrices libero tempus accumsan. Etiam commodo commodo lacinia. Quisque lacinia cursus nisl at porttitor. Morbi ornare venenatis lectus non mollis. Proin ac magna blandit eros pellentesque mattis ultricies vitae enim. In euismod, turpis a ultrices luctus, sem risus vestibulum sem, vitae bibendum magna justo sed justo.</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        <section>
+            <!--Experience and Study-->
+            {% for i in range(5) %}
+                <h1>{{i}}</h1>
+            {% endfor %}
+        </section>
+        <section id='contact_me' class='container'>
+            <!--Contact Me-->
+            <div class="anchor_grid">
+                <a href="" id="contact" class="nav-skip" height='5vh'></a>
+                <div class="content">
+                    <h2>Contact Me</h2>
+                    <div class="row">
+                        <div class="icon"></div>
+                        <div class="icontext">shekjaden@gmail.com</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+
+
+{% endblock %}
