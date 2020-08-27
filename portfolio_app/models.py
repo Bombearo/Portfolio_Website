@@ -1,6 +1,6 @@
 from datetime import date
 from werkzeug.security import generate_password_hash, check_password_hash
-from portfolio_app import db
+from portfolio_app import db, login_manager
 from flask_login import UserMixin
 
 user_roles = db.Table('user_roles',
@@ -12,6 +12,10 @@ project_tags = db.Table('project_tags',
     db.Column('portfolio_id',db.String(36),db.ForeignKey('portfolio.id')),
     db.Column('tag_id',db.String(60),db.ForeignKey('portfolio_tags.id'))
 )
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
 
 
 class User(UserMixin,db.Model):
