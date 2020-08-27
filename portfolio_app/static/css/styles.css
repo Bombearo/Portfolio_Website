@@ -46,6 +46,10 @@ p {
 	font-weight: 600;
 }
 
+a:hover {
+	color: #fff;
+}
+
 .slider-overlay {
 	background: rgba(0, 0, 0, .4);
 	position: absolute;
@@ -74,7 +78,7 @@ p {
 }
 
 .slide1 {
-	background: url('../images/Temp_Background.jpg') center center;
+	background: url('../images/background.jpg') center center;
 }
 .bg {
 	width: 100% !important;
@@ -141,7 +145,7 @@ nav {
 }
 
 .header-main {
-	padding: 100px 0;
+	padding-top: 100px;
 	text-align: center;
 }
 
@@ -159,21 +163,27 @@ nav {
 	letter-spacing: 2px;
 }
 
-.intro-btn-main {
+.intro-btn-main,
+.header-social {
 	width: 100%;
-	margin-top: 70px;
-	margin-bottom: 20px;
+	margin-top: 2vh;
 	float: left;
 	text-align: center;
 }
 
-.intro-btn-main .btn {
-	border: 1px solid #fff !important;
+.intro-btn-main .btn,
+.header-social .btn {
+	border: 2px solid #fff !important;
+	border-radius: 15%;
+}
+
+.intro-btn-main .btn a,
+.header-social .btn a {
+	color: #fff;
 }
 
 .btn-primary {
 	background: none;
-	border: 2px solid #fff !important;
 	padding: 10px 20px;
 	box-shadow: none;
 	border: none;
@@ -259,6 +269,10 @@ button a {
 	margin: -2em;
 }
 
+.btn:hover {
+	background-color: #7e7e7e;
+}
+
 #my_projects {
 	display: flex;
 	flex-direction: column;
@@ -284,6 +298,72 @@ button a {
 
 .work .work_content {
 	margin-left: 1vw;
+}
+
+.contact_info {
+	padding: 2vh;
+	width: 30%;
+	margin: auto;
+	text-align: center;
+}
+
+.icon {
+	margin-right: 5vw;
+	align-self: flex-end;
+}
+
+.icontext {
+	align-self: flex-start;
+}
+
+.icon,
+.icontext {
+	margin: auto;
+}
+
+#circle_icon {
+	background: rgb(92, 92, 92);
+	display: flex;
+	align-items: center;
+	text-align: center;
+	position: relative;
+	border-radius: 50%;
+	width: 2vw;
+	height: 2vw;
+	overflow: hidden;
+	margin: auto;
+}
+
+#mail_icon {
+	margin: 0 auto;
+}
+
+.form {
+	top: 4vh;
+	margin: auto;
+	width: 50%;
+}
+
+footer {
+	display: flex;
+	height: 5vh;
+	background-color: #1d1c1c;
+	color: white;
+	justify-content: space-around;
+	align-items: center;
+}
+
+footer .container {
+	position: relative;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
+	text-align: center;
+}
+
+.course_level {
+	display: none;
 }
 
 @media screen and (max-width: 768px) {

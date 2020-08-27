@@ -44,7 +44,7 @@ class Portfolio(db.Model):
     __tablename__ = 'portfolio'
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(64), index=True, unique=True)
-    thumbnail = db.Column(db.String(64), index=True, unique=True)
+    thumbnail = db.Column(db.String(64), index=True, unique=True, nullable=True)
     description = db.Column(db.String(64), index=True, unique=True)
     github_link = db.Column(db.String(64), index=True, unique=True)
     author = db.Column(db.String(50), db.ForeignKey('users.id'))

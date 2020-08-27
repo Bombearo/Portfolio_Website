@@ -18,26 +18,28 @@
                 <div id="slider" class="carousel slide" style="max-width: 100%; margin: 0px auto;" data-ride="carousel">
                     <div class="bx-viewport carousel-inner" style="width: 100%; overflow: hidden; position: relative; height: 53px;">
                         <div class="text-slider" style="width: auto; position: relative;">
+                            
                             <div class="carousel-item active" style="float: none; position: absolute; width: 100%;" data-interval="7000">
                                 <h3>Student</h3>
                             </div>
+                            {% for item in slider %}
                             <div class="carousel-item" style="float: none; position: absolute; width: 100%;" data-interval="7000">
-                                <h3>Musician</h3>
+                                <h3>{{item}}</h3>
                             </div>
-                            <div class="carousel-item"  style="float: none; position: absolute; width: 100%;" data-interval="7000">
-                               <h3>Technology Geek</h3>
-                      </div>
+                            {% endfor %}
+                        </div>
                     </div>
-                    </div>
-                  </div>
-                <div class="bx-wrapper" style="max-width: 100%; margin: 0px auto;" data-ride='carousel'>
-                    <div class="bx-viewport carousel-inner" >
-                            
                     </div>
                 </div>
-             <div class="header-social"></div>
-             <div class="intro-btn-main page-scroll">
-            <a class="btn btn-primary" href='{{ url_for("portfolio.tutoring") }}'>Tutoring</a>
+             <div class="header-social intro-btn-main">
+                    <a class="btn btn-primary" id='github' href="https://github.com/Bombearo">
+                        <svg id="i-github" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="32" height="32">
+                            <path stroke-width="0" fill="currentColor" d="M32 0 C14 0 0 14 0 32 0 53 19 62 22 62 24 62 24 61 24 60 L24 55 C17 57 14 53 13 50 13 50 13 49 11 47 10 46 6 44 10 44 13 44 15 48 15 48 18 52 22 51 24 50 24 48 26 46 26 46 18 45 12 42 12 31 12 27 13 24 15 22 15 22 13 18 15 13 15 13 20 13 24 17 27 15 37 15 40 17 44 13 49 13 49 13 51 20 49 22 49 22 51 24 52 27 52 31 52 42 45 45 38 46 39 47 40 49 40 52 L40 60 C40 61 40 62 42 62 45 62 64 53 64 32 64 14 50 0 32 0 Z" />
+                        </svg>
+                    </a>
+             </div>
+             <div class="intro-btn-main">
+             <a class="btn btn-primary" href='{{ url_for("portfolio.tutoring") }}'>Tutoring</a>
              <a class="btn btn-primary" href="#projects">Portfolio</a>
              </div>
             </div>
@@ -111,9 +113,17 @@
                 <a href="" id="contact" class="nav-skip" height='5vh'></a>
                 <div class="content">
                     <h2>Contact Me</h2>
-                    <div class="row">
-                        <div class="icon"></div>
-                        <div class="icontext">shekjaden@gmail.com</div>
+                    <div class="contact_info" id="email">
+                        <div style='display:flex;'>
+                            <div class="icon">
+                                <div id="circle_icon">
+                                    <ion-icon id='mail_icon' name="mail-outline"></ion-icon>
+                                </div>
+                                
+                            </div>
+                            <div class="icontext"><a href="mailto:shekjaden@gmail.com">shekjaden@gmail.com</a>
+                                </div>
+                        </div>
                     </div>
                 </div>
             </div>
