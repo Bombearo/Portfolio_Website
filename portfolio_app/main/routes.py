@@ -7,8 +7,8 @@ main = Blueprint('main', __name__)
 @main.route('/')
 @main.route('/home')
 def index():
-    path = r'C:\Users\Jaden\Desktop\Projects\Portfolio\portfolio_app\static\website_content'
-    about_me = get_about_me(url_for('static', filename='website_content/1_about_me.txt'))
+    path = os.getcwd()+'/portfolio_app'+url_for('static', filename='website_content/1_about_me.txt')
+    about_me = get_about_me(path)
     nav = [['about', 'About Me'],['projects', 'Projects'],['experience','Experience'],['contact', 'Contact Me']]
-    slider = ['Tutor']
+    slider = ['Temp']
     return render_template('portfolio.html',nav = nav, about_me=about_me, slider=slider)

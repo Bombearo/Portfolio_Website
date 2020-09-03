@@ -19,11 +19,9 @@ def create_app(config_class = Config):
     login_manager.init_app(app)
     
     from portfolio_app.main.routes import main
-    from portfolio_app.my_portfolio.routes import portfolio
     from portfolio_app.users.routes import users
     from portfolio_app import models
 
     app.register_blueprint(main)
-    app.register_blueprint(portfolio)
     app.register_blueprint(users)
     return app

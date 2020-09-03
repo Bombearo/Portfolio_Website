@@ -1,12 +1,26 @@
+/* ===============
+	TABLE OF CONTENTS
+
+	1. General Styles
+
+	2. Typography
+
+	3. Layout
+
+	4. Components
+		4.1 Homeslider
+		4.2 Button anchors
+		4.3 Icon Styling
+		4.4 Shapes
+	
+	5. Media Query (Max Width:1028px)
+==================*/
+
+/*=====================
+	1. General Styles
+=======================*/
 * {
 	box-sizing: border-box;
-}
-
-@font-face {
-	font-family: 'Monaco';
-	src: url('../fonts/Monaco.woff') format('woff');
-	font-style: normal;
-	font-weight: normal;
 }
 
 html,
@@ -23,6 +37,16 @@ body {
 
 body {
 	position: relative;
+}
+
+/*======================
+	2. Typography
+=======================*/
+@font-face {
+	font-family: 'Monaco';
+	src: url('../fonts/Monaco.woff') format('woff');
+	font-style: normal;
+	font-weight: normal;
 }
 
 h1,
@@ -50,51 +74,30 @@ a:hover {
 	color: #fff;
 }
 
-.slider-overlay {
-	background: rgba(0, 0, 0, .4);
-	position: absolute;
-	left: 0;
-	top: 0;
-	right: 0;
-	z-index: 999;
-	width: 100%;
-	height: 100%;
+.header-main h2 {
+	color: #fff;
+	font-size: 70px;
+	font-weight: 700;
+	margin-bottom: 20px;
 }
 
-.homeslider {
-	width: 100%;
-	height: 100%;
-	max-height: 100%;
-	position: absolute;
+.header-main h3 {
+	color: #fff;
+	margin: 10px 0;
+	font-size: 30px;
+	letter-spacing: 2px;
 }
-.flexslider .slides {
-	margin: 0;
-	padding: 0;
-}
-.slides {
-	height: 100%;
-	max-height: 100%;
-	list-style-type: none;
+/*======================
+3. Layout
+=======================*/
+
+nav {
+	text-align: center;
+	position: -webkit-sticky;
 }
 
-.slide1 {
-	background: url('../images/background.jpg') center center;
-}
-.bg {
-	width: 100% !important;
-	height: 100% !important;
-	background-size: cover !important;
-	position: absolute !important;
-	z-index: 2 !important;
-	background-attachment: fixed;
-}
-.slides:after {
-	content: "\0020";
-	display: block;
-	clear: both;
-	visibility: hidden;
-	line-height: 0;
-	height: 0;
+.nav-link {
+	padding: 5px;
 }
 
 #heading {
@@ -109,6 +112,11 @@ a:hover {
 	z-index: 999;
 }
 
+.header-main {
+	padding-top: 100px;
+	text-align: center;
+}
+
 .banner {
 	display: table;
 	width: 100%;
@@ -119,82 +127,6 @@ a:hover {
 	display: table-cell;
 	text-align: center;
 	vertical-align: middle;
-}
-
-#text-slider {
-	padding: 0px;
-	background: transparent;
-}
-
-.slide-text {
-	width: 90%;
-	margin: 0 auto;
-}
-#heading .banner {
-	position: relative;
-	z-index: 999;
-}
-
-nav {
-	text-align: center;
-	position: -webkit-sticky;
-}
-
-.nav-link {
-	padding: 5px;
-}
-
-.header-main {
-	padding-top: 100px;
-	text-align: center;
-}
-
-.header-main h2 {
-	color: #fff;
-	font-size: 70px;
-	font-weight: 700;
-	margin-bottom: 20px;
-}
-
-.header-main h3 {
-	color: #fff;
-	margin: 10px 0;
-	font-size: 30px;
-	letter-spacing: 2px;
-}
-
-.intro-btn-main,
-.header-social {
-	width: 100%;
-	margin-top: 2vh;
-	float: left;
-	text-align: center;
-}
-
-.intro-btn-main .btn,
-.header-social .btn {
-	border: 2px solid #fff !important;
-	border-radius: 15%;
-}
-
-.intro-btn-main .btn a,
-.header-social .btn a {
-	color: #fff;
-}
-
-.btn-primary {
-	background: none;
-	padding: 10px 20px;
-	box-shadow: none;
-	border: none;
-	color: #fff;
-	font-size: 14px;
-	letter-spacing: 2px;
-	font-weight: 600;
-	text-transform: uppercase;
-	text-decoration: none;
-	display: inline-block;
-	border-radius: 0px;
 }
 
 .main_content {
@@ -236,41 +168,11 @@ nav {
 	margin-left: 2vw;
 }
 
-#circle {
-	background: lightblue;
-	position: relative;
-	border-radius: 50%;
-	width: 20vw;
-	height: 20vw;
-	overflow: hidden;
-	margin: auto;
-}
-
 .introduction {
 	grid-area: content;
 	font-size: 18px;
 	font-weight: bold;
 	color: grey;
-}
-
-.shortcuts {
-	grid-area: buttons;
-	margin: auto;
-	display: flex;
-	align-items: center;
-	justify-items: center;
-}
-
-button a {
-	display: inline-block;
-	position: relative;
-	z-index: 1;
-	padding: 2em;
-	margin: -2em;
-}
-
-.btn:hover {
-	background-color: #7e7e7e;
 }
 
 #my_projects {
@@ -307,6 +209,149 @@ button a {
 	text-align: center;
 }
 
+footer {
+	display: flex;
+	height: 5vh;
+	background-color: #1d1c1c;
+	color: white;
+	justify-content: space-around;
+	align-items: center;
+}
+
+footer .container {
+	position: relative;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
+	text-align: center;
+}
+
+/*==============================
+	4. Components
+================================*/
+/*=======================
+	4.1 Homeslider
+=========================*/
+
+.homeslider {
+	width: 100%;
+	height: 100%;
+	max-height: 100%;
+	position: absolute;
+}
+
+.slider-overlay {
+	background: rgba(0, 0, 0, .4);
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	z-index: 999;
+	width: 100%;
+	height: 100%;
+}
+
+.slides {
+	height: 100%;
+	max-height: 100%;
+	list-style-type: none;
+}
+
+.slide1 {
+	background: url('../images/background.jpg') center center;
+}
+
+.bg {
+	width: 100% !important;
+	height: 100% !important;
+	background-size: cover !important;
+	position: absolute !important;
+	z-index: 2 !important;
+	background-attachment: fixed;
+}
+
+.slides:after {
+	content: "\0020";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+
+.flexslider .slides,
+#text-slider {
+	margin: 0;
+	padding: 0;
+	background: transparent;
+}
+
+.slide-text {
+	width: 90%;
+	margin: 0 auto;
+}
+
+/*=======================
+	4.2 Button anchors
+=========================*/
+.intro-btn-main,
+.header-social {
+	width: 100%;
+	margin-top: 2vh;
+	float: left;
+	text-align: center;
+}
+
+.intro-btn-main .btn,
+.header-social .btn {
+	border: 2px solid #fff !important;
+	border-radius: 15%;
+}
+
+.intro-btn-main a,
+.header-social a {
+	color: #fff;
+}
+
+.btn-primary {
+	background: none;
+	padding: 10px 20px;
+	box-shadow: none;
+	border: none;
+	color: #fff;
+	font-size: 14px;
+	letter-spacing: 2px;
+	font-weight: 600;
+	text-transform: uppercase;
+	text-decoration: none;
+	display: inline-block;
+	border-radius: 0px;
+}
+
+button a {
+	display: inline-block;
+	position: relative;
+	z-index: 1;
+	padding: 2em;
+	margin: -2em;
+}
+
+.btn:hover {
+	background-color: #7e7e7e;
+}
+
+.shortcuts {
+	grid-area: buttons;
+	margin: auto;
+	display: flex;
+	align-items: center;
+	justify-items: center;
+}
+
+/*========================
+	4.3 Icon Styling
+==========================*/
 .icon {
 	margin-right: 5vw;
 	align-self: flex-end;
@@ -318,6 +363,19 @@ button a {
 
 .icon,
 .icontext {
+	margin: auto;
+}
+
+/*=================
+	4.4 Shapes
+===================*/
+#circle {
+	background: lightblue;
+	position: relative;
+	border-radius: 50%;
+	width: 20vw;
+	height: 20vw;
+	overflow: hidden;
 	margin: auto;
 }
 
@@ -338,35 +396,10 @@ button a {
 	margin: 0 auto;
 }
 
-.form {
-	top: 4vh;
-	margin: auto;
-	width: 50%;
-}
-
-footer {
-	display: flex;
-	height: 5vh;
-	background-color: #1d1c1c;
-	color: white;
-	justify-content: space-around;
-	align-items: center;
-}
-
-footer .container {
-	position: relative;
-	top: 50%;
-	-webkit-transform: translateY(-50%);
-	-ms-transform: translateY(-50%);
-	transform: translateY(-50%);
-	text-align: center;
-}
-
-.course_level {
-	display: none;
-}
-
-@media screen and (max-width: 768px) {
+/*=====================================
+	5. Media Query (Max Width:1028px)
+=======================================*/
+@media screen and (max-width: 1028px) {
 	.header-main h2 {
 		font-size: 40px;
 	}
@@ -374,8 +407,7 @@ footer .container {
 	.header-main h3 {
 		font-size: 20px;
 	}
-}
-@media screen and (max-width: 1000px) {
+
 	#about_me {
 		display: grid;
 		grid-template-columns: auto;
@@ -412,8 +444,6 @@ footer .container {
 	.work .content {
 		margin-top: 1vh;
 	}
-}
-@media screen and (max-width: 1028px) {
 	.intro-btn-main {
 		margin-top: 30px !important;
 	}

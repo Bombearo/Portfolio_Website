@@ -39,7 +39,6 @@
                     </a>
              </div>
              <div class="intro-btn-main">
-             <a class="btn btn-primary" href='{{ url_for("portfolio.tutoring") }}'>Tutoring</a>
              <a class="btn btn-primary" href="#projects">Portfolio</a>
              </div>
             </div>
@@ -65,14 +64,16 @@
                     <div class='text'>
                         <h2>{{about_me.title}}</h2>
                         <p class ='introduction'>{{about_me.first_line}}</p>
-                        {% for text in about_me.content%}
+                        {% for text in about_me.content.split('\n')%}
                             <p class = 'about_me_content'>{{text}}</p>
                         {% endfor %}
                     </div>
                     <div class="shortcuts">
                         <button type = 'button' class="btn btn-primary"><a href="#projects">Portfolio</a></button>
-                        <button type = 'button' class="btn btn-primary"><a href="#">Contact Me</a></button>
-                        <button type = 'button' class="btn btn-primary"><a href="https://exercism.io/profiles/Bombearo">Exercism Profile</a></button>
+                        <button type = 'button' class="btn btn-primary"><a href="#contact_me">Contact Me</a></button>
+                        {% for button_title,link in about_me.buttons%}
+                            <button type = 'button' class="btn btn-primary"><a href="{{ link }}"> {{button_title}}</a></button>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
