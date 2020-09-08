@@ -1,0 +1,152 @@
+{% extends 'layout.html' %}
+{% block head %}
+<style>
+    form{
+        width:70%;
+        margin:auto;
+    }
+
+    .buttons{
+        display:flex;
+        align-items: flex-end;
+        margin:auto;
+    }
+
+    .text, .buttons .link{
+        width:50%;
+        padding:2vw;
+    }
+
+    #about{
+        height:auto;
+    }
+    
+</style>
+{% endblock %}
+
+
+{% block header%}
+
+{% endblock %}
+
+{% block content %}
+<div class="content-section">
+        <form name ='about' method="POST" action="" enctype="multipart/form-data" onsubmit="return validateLinks()">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">About Info</legend>
+                <div class="form-group">
+                    {{ form.first_line.label(class="form-control-label") }}
+
+                    {% if form.first_line.errors %}
+                        {{ form.first_line(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.first_line.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.first_line(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group" id='about'>
+                    {{ form.about.label(class="form-control-label") }}
+                    {% if form.about.errors %}
+                    {{ form.about(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.about.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.about(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group buttons">
+                    <div class="text">
+                    {{ form.button_1_text.label(class="form-control-label") }}
+                    {% if form.button_1_text.errors %}
+                    {{ form.button_1_text(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.button_1_text.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.button_1_text(class="form-control form-control-lg") }}
+                    {% endif %}
+                    </div>
+                    <div class="link">
+                    {{ form.button_1_link.label(class="form-control-label") }}
+                    {% if form.button_1_link.errors %}
+                    {{ form.button_1_link(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.button_1_link.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.button_1_link(class="form-control form-control-lg") }}
+                    {% endif %}
+                    </div>
+                </div>
+                <div class="form-group buttons">
+                    <div class="text">
+                    {{ form.button_2_text.label(class="form-control-label") }}
+                    {% if form.button_2_text.errors %}
+                    {{ form.button_2_text(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.button_2_text.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.button_2_text(class="form-control form-control-lg") }}
+                    {% endif %}
+                    </div>
+                    <div class="link">
+                    {{ form.button_2_link.label(class="form-control-label") }}
+                    {% if form.button_2_link.errors %}
+                    {{ form.button_2_link(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.button_2_link.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.button_2_link(class="form-control form-control-lg") }}
+                    {% endif %}
+                    </div>
+                </div>
+                
+                
+            </fieldset>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+        </form>
+  </div>
+  
+{% endblock content %}
+
+{% block footer %}
+<script>
+    function myXOR(a,b) {
+  return ( a || b ) && !( a && b );
+}
+    function validateLinks() {
+    var button_1_text = document.forms["about"]["button_1_text"].value;
+    var button_1_link = document.forms["about"]["button_1_link"].value;
+    var button_2_text = document.forms["about"]["button_2_text"].value;
+    var button_2_link = document.forms["about"]["button_2_link"].value;
+    if (myXOR(button_1_link,button_1_text)) {
+        alert("Both fields for button 1 or none should be filled out");
+        return false;
+    }
+    if (myXOR(button_2_link,button_2_text)) {
+        alert("Both fields for button 2 or none should be filled out");
+        return false;
+    }
+    } 
+</script>
+{% endblock footer%}

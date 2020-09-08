@@ -21,6 +21,10 @@
           {% for id, title in nav %}
           <a class="nav-link" href="#{{id}}">{{title}}</a> 
           {% endfor %}
+          {% if current_user.is_authenticated %}
+          <a href="{{ url_for('users.admin') }}" class="nav-link">Admin</a>
+          <a href="{{ url_for('users.logout') }}" class="nav-link">Logout</a>
+          {% endif %}
         </div>
       </div>
     </nav>
@@ -37,6 +41,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
     <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+    {% block footer %}{% endblock %}
     <script type="text/javascript" src="{{url_for('static', filename = 'js/bootstrap.min.js')}}"></script>
   </footer>
   </html>

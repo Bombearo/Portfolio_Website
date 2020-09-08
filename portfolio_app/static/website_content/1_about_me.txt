@@ -1,4 +1,8 @@
 About Me
+
 I am Jaden Shek. A computer science student based in Edinburgh.
-I've been interested in computers since I was 9. I liked playing games, but I always wanted to understand how they were made. Since I started learning Python, I've always been eager to learn more and more about what possibilites await at the tips of my fingers!|So far, I've not created much, just learning on exercism.io, and creating this portfolio project using flask, but this was a great learning experience.
+
+I've been interested in computers since I was 9. I liked playing games, but I always wanted to understand how they were made. Since I started learning Python, I've always been eager to learn more and more about what possibilites await at the tips of my fingers!So far, I've not created much, just learning on exercism.io, and creating this portfolio project using flask, but this was a great learning experience.
+
 Exercism Profile,https://exercism.io/profiles/Bombearo
+,

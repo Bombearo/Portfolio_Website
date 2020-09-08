@@ -14,8 +14,12 @@ class LoginForm(FlaskForm):
 
 class EditAboutForm(FlaskForm):
     first_line = StringField('Opening', validators=[DataRequired()])
-    about = TextAreaField('About Description', validators=[DataRequired()])
+    about = TextAreaField('About Description', validators=[DataRequired(),], render_kw={'rows':'4','cols':'100','maxlength':4000})
     profile_pic = FileField('Insert Image:', validators=[FileAllowed(['jpg','png'])])
+    button_1_link = StringField('Link for first Button')
+    button_1_text = StringField('Text on first button')
+    button_2_link = StringField('Link for second Button')
+    button_2_text = StringField('Text on second Button')
     submit = SubmitField('Update')
 
 
