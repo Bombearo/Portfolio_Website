@@ -71,8 +71,10 @@
                     <div class="shortcuts">
                         <button type = 'button' class="btn btn-primary"><a href="#projects">Portfolio</a></button>
                         <button type = 'button' class="btn btn-primary"><a href="#contact_me">Contact Me</a></button>
-                        {% for button_title,link in about_me.buttons%}
-                            <button type = 'button' class="btn btn-primary"><a href="{{ link }}"> {{button_title}}</a></button>
+                        {% for button in about_me.buttons%}
+                            {% if button %}
+                            <button type = 'button' class="btn btn-primary"><a href="{{ button[1] }}"> {{button[0]}}</a></button>
+                            {% endif %}
                         {% endfor %}
                     </div>
                 </div>

@@ -87,8 +87,14 @@ a:hover {
 	font-size: 30px;
 	letter-spacing: 2px;
 }
+
+form {
+	width: 70%;
+	margin: auto;
+}
+
 /*======================
-3. Layout
+	3. Layout
 =======================*/
 
 nav {
@@ -366,9 +372,9 @@ button a {
 	margin: auto;
 }
 
-/*=================
+/*======================
 	4.4 Shapes
-===================*/
+======================*/
 #circle {
 	background: lightblue;
 	position: relative;

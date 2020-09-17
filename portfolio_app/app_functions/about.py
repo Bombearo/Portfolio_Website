@@ -10,7 +10,7 @@ class About:
         self.path = path
 
     def format_buttons(self):
-        self.buttons = [button.split(',') for button in self.buttons]
+        self.buttons = [button.split(',') for buttons in self.buttons for button in buttons.split('\n')]
     
     def write_content(self):
         content = re.sub(r'\n+','', self.content)
@@ -20,7 +20,7 @@ class About:
         file.write(self.title+'\n\n')
         file.write(self.first_line+'\n\n')
         file.write(content+'\n\n')
-        if buttons:
-            for button in buttons:
+        for button in buttons:
+            if button:
                 file.write(button)
         file.close()

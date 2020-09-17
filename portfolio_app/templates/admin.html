@@ -1,5 +1,15 @@
 {% extends 'layout.html' %}
 {% block head %}
+<style>
+    .buttons{
+        display:flex;
+    }
+
+    .admin_button{
+        padding:2vw;
+    }
+
+</style>
 {% endblock %}
 
 
@@ -8,6 +18,12 @@
 {% endblock %}
 
 {% block content %}
-<a href="{{ url_for('users.account')}}">Edit your account</a>
-<a href="{{ url_for('users.edit_about')}}">Edit your About_me</a>
+<div class="buttons">
+    <div class="admin_button"><a href="{{ url_for('users.account')}}">Edit your account</a></div>
+    <div class="admin_button"><a href="{{ url_for('users.edit_about')}}">Edit your About_me</a></div>
+    <div class="admin_button"><a href="{{ url_for('users.edit_about')}}">Add a project</a></div>
+</div>
+
+
+
 {% endblock content %}
