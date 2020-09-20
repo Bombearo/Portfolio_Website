@@ -14,15 +14,15 @@
         <div class="bannerContent">
             <div class="slide-text">
                <div class="col-md-12 header-main">
-                <h2>Jaden Shek</h2>
+                <h2>{{ user.alias }}</h2>
                 <div id="slider" class="carousel slide" style="max-width: 100%; margin: 0px auto;" data-ride="carousel">
                     <div class="bx-viewport carousel-inner" style="width: 100%; overflow: hidden; position: relative; height: 53px;">
                         <div class="text-slider" style="width: auto; position: relative;">
                             
                             <div class="carousel-item active" style="float: none; position: absolute; width: 100%;" data-interval="7000">
-                                <h3>Student</h3>
+                                <h3>{{ slider[0] }}</h3>
                             </div>
-                            {% for item in slider %}
+                            {% for item in slider[1:] %}
                             <div class="carousel-item" style="float: none; position: absolute; width: 100%;" data-interval="7000">
                                 <h3>{{item}}</h3>
                             </div>
@@ -58,7 +58,7 @@
                 <div class="content" id='about_me'>
                     <div class="image">
                         <div id="circle">
-                            <img src="{{ url_for('static', filename = 'images/Pfp.png') }}" alt="My Profile!" width='100%'>
+                            <img src="{{url_for('static', filename = 'profile_pics/'+user.profile_pic)}}" alt="My Picture!" class='image'>
                         </div>
                     </div>
                     <div class='text'>

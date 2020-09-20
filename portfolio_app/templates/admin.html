@@ -18,6 +18,15 @@
 {% endblock %}
 
 {% block content %}
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+  {% for category, message in messages %}
+    <div class="alert alert-{{ category }}">
+      {{ message }}
+    </div>
+  {% endfor %}
+{% endif %}
+{% endwith %}
 <div class="buttons">
     <div class="admin_button"><a href="{{ url_for('users.account')}}">Edit your account</a></div>
     <div class="admin_button"><a href="{{ url_for('users.edit_about')}}">Edit your About_me</a></div>

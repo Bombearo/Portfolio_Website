@@ -12,7 +12,7 @@
   <body data-spy="scroll" data-target=".navbar-custom" data-offset="0">
     {% block header %} {% endblock %}
     <nav class="navbar sticky-top navbar-custom navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="{{ url_for('main.index') }}">Jaden's Portfolio</a>
+      <a class="navbar-brand" href="{{ url_for('main.index') }}">{{ user.alias.split()[0] }}'s Portfolio</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>

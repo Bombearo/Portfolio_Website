@@ -31,9 +31,11 @@ class PortfolioForm(FlaskForm):
     submit = SubmitField('Post')
 
 class UpdateAccountForm(FlaskForm):
-    username = StringField('Username',
-                           validators=[DataRequired(), Length(min=2, max=20)])
+    username = StringField('Username - Used for logging in to your admin page',validators=[DataRequired(), Length(min=2, max=20)])
+    name = StringField('Name/Alias - This will be used in your navbar, and on the front page of your website.', validators=[DataRequired(), Length(min=2, max=30)])
     picture = FileField('Update Profile Picture', validators=[FileAllowed(['jpg','png'])])
+    password = PasswordField('New Password')
+    confirm_password = PasswordField('Confirm Password', validators=[EqualTo('password')])
     submit = SubmitField('Update')
 
     def validate_username(self, username):
@@ -47,3 +49,7 @@ class UpdateAccountForm(FlaskForm):
             user = User.query.filter_by(email=email.data).first()
             if user:
                 raise ValidationError('That email is taken. Please choose a different one.')
+
+class ConfirmChanges(FlaskForm):
+    password = PasswordField('Enter password to confirm changes', validators=[DataRequired()])
+    submit = SubmitField('Confirm Changes')

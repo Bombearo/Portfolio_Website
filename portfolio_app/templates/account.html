@@ -15,7 +15,7 @@
           {% endwith %}
         </div>
     </div>
-        <form method="POST" action="" enctype="multipart/form-data">
+        <form name = 'account' method="POST" action="" enctype="multipart/form-data" onsubmit="validateForm()">
             {{ form.hidden_tag() }}
             <fieldset class="form-group">
                 <legend class="border-bottom mb-4">Account Info</legend>
@@ -34,19 +34,76 @@
                     {% endif %}
                 </div>
                 <div class="form-group">
+                    {{ form.name.label(class="form-control-label") }}
+
+                    {% if form.name.errors %}
+                        {{ form.name(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.name.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.name(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
                     {{ form.picture.label() }}
                     {{ form.picture(class="form-control-file") }}
                     {% if form.picture.errors%}
-                        {% for error in form.picture.errors %}
-                            <spam class="text-danger">{{  error  }}</spam>
-                        {%endfor%}
+                    {% for error in form.picture.errors %}
+                    <spam class="text-danger">{{  error  }}</spam>
+                    {%endfor%}
                     {%endif%}
+                </div>
+                <div class="form-group">
+                    {{ form.password.label(class="form-control-label") }}
+                    {% if form.password.errors %}
+                        {{ form.password(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.password(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.confirm_password.label(class="form-control-label") }}
+                    {% if form.confirm_password.errors %}
+                        {{ form.confirm_password(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.confirm_password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.confirm_password(class="form-control form-control-lg") }}
+                    {% endif %}
                 </div>
             </fieldset>
             <div class="form-group">
                 {{ form.submit(class="btn btn-outline-info") }}
             </div>
         </form>
-  </div>
-  
+    </div>
+    
 {% endblock content %}
+
+
+{% block footer %}
+<script>
+    function myXOR(a,b) {
+  return ( a || b ) && !( a && b );
+}
+    function validateForm() {
+    var password = document.forms["account"]["password"].value;
+    var confirm_password = document.forms["account"]["confirm_password"].value;
+    if (myXOR(password,confirm_password)) {
+        alert("If you are changing password, both password and confirm password must be filled out");
+        return false;
+    }
+    } 
+</script>
+{% endblock footer %}

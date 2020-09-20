@@ -11,6 +11,7 @@ from werkzeug.utils import secure_filename
 
 users = Blueprint('users', __name__)
 
+
 def restricted(access_level):
     def decorator(func):
         @wraps(func)
@@ -22,6 +23,15 @@ def restricted(access_level):
         return wrapper
     return decorator
 
+def password_change(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        if current_user.check_password('AdminPass'):
+            flash('You must change your password to securely manage your website','warning')
+            return redirect(url_for('users.account'))
+        return func(*args,**kwargs)
+    return wrapper
+
 @users.route("/login", methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
@@ -30,16 +40,12 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
-        if user and user.check_password('AdminPass'):
-            login_user(user,remember=form.remember.data)
-            flash('You must change your password to securely manage your website','warning')
-            return redirect(url_for('users.account'))
-        elif user and user.check_password(form.password.data):
+        if user and user.check_password(form.password.data):
             login_user(user, remember=form.remember.data)
             return redirect(url_for('users.admin'))
         else:
             flash('Login Unsuccessful. Please check email and password', 'danger')
-    return render_template('login.html', title='Login', form=form)
+    return render_template('login.html', title='Login', form=form,user=User.query.first())
 
 
 @users.route("/logout")
@@ -49,27 +55,33 @@ def logout():
 
 @users.route("/admin", methods =['GET','POST'])
 @login_required
-@restricted(access_level='Admin')
+@password_change
 def admin():
-    return render_template('admin.html', title='Account')
+    return render_template('admin.html', title='Account',user=current_user)
 
 @users.route("/admin/account", methods =['GET','POST'])
 @login_required
-@restricted(access_level='Admin')
 def account():
     form = UpdateAccountForm()
     if form.validate_on_submit():
         current_user.username = form.username.data
+        current_user.name = form.name.data
+        if form.password.data:
+            current_user.set_password(form.password.data)
+        if form.picture.data:
+            picture_file = save_image(form.picture.data,'profile_pics',720,720)
+            current_user.profile_pic = picture_file
         db.session.commit()
         flash('Your details have been updated!','success')
         return redirect(url_for('users.admin'))
     elif request.method == 'GET':
-        form.username.data = current_user.username 
-    return render_template('account.html', title='Account',form = form)
+        form.username.data = current_user.username
+        form.name.data = current_user.alias
+    return render_template('account.html', title='Account',form = form,user=current_user)
 
 @users.route("/admin/about", methods=['GET', 'POST'])
 @login_required
-@restricted(access_level='Admin')
+@password_change
 def edit_about():
     form = EditAboutForm()
     path = os.getcwd()+'/portfolio_app'+url_for('static', filename='website_content/1_about_me.txt')
@@ -95,11 +107,12 @@ def edit_about():
             form.button_2_text.data = about_me.buttons[1][0]
             form.button_2_link.data = about_me.buttons[1][1]
 
-    return render_template('edit_about.html', title='Account', form = form)
+    return render_template('edit_about.html', title='Account', form = form,user=current_user)
 
 @users.route("/admin/new_project", methods=['GET', 'POST'])
 @login_required
 @restricted(access_level='Admin')
+@password_change
 def new_project():
     form = PortfolioForm()
     if form.validate_on_submit():
@@ -119,24 +132,23 @@ def new_project():
                 media_file = save_image(filename,'thumbnail',1280,720)
                 media = Portfolio_Media(thumbnail=media_file,project_id=project.id)
                 db.session.add(media)
-                flash('File(s) successfully uploaded')
-                return redirect(url_for('users.admin'))
         db.session.commit()
-
              
         
         flash('Your project has been added!', 'success')
         return redirect(url_for('main.home'))
-    return render_template('add_project.html', form = form, legend = 'New Post')  
+    return render_template('add_project.html', form = form, legend = 'New Post',user=current_user)  
 
 @users.route('/projects/<int:project_id>')
 def project(project_id):
     project = Portfolio.query.get_or_404(project_id)
-    return render_template('post.html', title=project.title, project = project)
+    user = User.query.first()
+    return render_template('post.html', title=project.title, project = project,user=user)
 
 @users.route('/projects/<int:project_id>/update', methods = ['GET','POST'])
 @login_required
 @restricted(access_level='Admin')
+@password_change
 def update_post(project_id):
     project = Portfolio.query.get_or_404(project_id)
     if project.author != current_user:
@@ -159,17 +171,19 @@ def update_post(project_id):
                 media_file = save_image(filename,'thumbnail',1280,720)
                 media = Portfolio_Media(thumbnail=media_file,project_id=project.id)
                 db.session.add(media)
-                flash('File(s) successfully uploaded')
+                db.session.commit()
+        flash('File(s) successfully uploaded')
         return redirect(url_for('users.admin'))
     elif request.method == 'GET':
         form.title.data = project.title
         form.content.data = project.content
     return render_template('add_project.html', title="Update Project", project = project, 
-                            form=form, legend = 'Update Project')
+                            form=form, legend = 'Update Project',user=current_user)
 
 @users.route('/projects/<int:post_id>/delete',methods = ['POST'])
 @login_required
 @restricted(access_level='Admin')
+@password_change
 def delete_post(post_id):
     post = Portfolio.query.get_or_404(post_id)
     if post.author!=current_user:

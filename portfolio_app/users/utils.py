@@ -22,6 +22,6 @@ def save_picture(width,height,form_picture,picture_path):
 
 def save_image(form_picture,pic_type,width,height):
     picture_fn = generate_hex(form_picture)
-    picture_path = os.path.join(current_app.root_path,'static/'+pic_type, picture_fn)
+    picture_path = os.path.join(current_app.root_path,'static\\'+pic_type, picture_fn)
     save_picture(width,height,form_picture,picture_path)
     return picture_fn
