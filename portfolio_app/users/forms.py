@@ -57,4 +57,5 @@ class ConfirmChanges(FlaskForm):
 
 class UpdateContactForm(FlaskForm):
     email = StringField('Email',validators=[DataRequired(), Length(min=2, max=50),Email()])
+    github_profile = StringField('Enter your Github username', validators=[DataRequired()])
     submit=SubmitField('Update Contacts')

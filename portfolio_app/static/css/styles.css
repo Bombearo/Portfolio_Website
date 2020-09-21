@@ -13,7 +13,9 @@
 		4.3 Icon Styling
 		4.4 Shapes
 	
-	5. Media Query (Max Width:1028px)
+	5. Media Query (Max Width:900px)
+
+	6. Media Query (Max Width:400px)
 ==================*/
 
 /*=====================
@@ -419,9 +421,9 @@ button a {
 }
 
 /*=====================================
-	5. Media Query (Max Width:1028px)
+	5. Media Query (Max Width:900px)
 =======================================*/
-@media screen and (max-width: 1028px) {
+@media screen and (max-width: 900px) {
 	.header-main h2 {
 		font-size: 40px;
 	}
@@ -469,5 +471,80 @@ button a {
 	}
 	.intro-btn-main {
 		margin-top: 30px !important;
+	}
+
+	.contact_info {
+		padding: 2vh;
+		width: 60%;
+		margin: auto;
+		text-align: center;
+	}
+
+	.contact_info .icon {
+		padding: 2vh;
+		margin: auto;
+		text-align: center;
+	}
+
+	#circle_icon {
+		background: rgb(92, 92, 92);
+		display: flex;
+		align-items: center;
+		text-align: center;
+		position: relative;
+		border-radius: 50%;
+		width: 4vw;
+		height: 4vw;
+		overflow: hidden;
+		margin: auto;
+	}
+
+	.content h4 {
+		font-size: 16px;
+	}
+	.content p {
+		font-size: 12px;
+	}
+}
+
+/*=====================================
+	6. Media Query (Max Width:400px)
+=======================================*/
+@media screen and (max-width: 400px) {
+	.contact_info {
+		font-size: 8px;
+		width: 100%;
+		margin: auto;
+		text-align: center;
+	}
+
+	.contact_info .icon {
+		padding: 2vh;
+		margin: auto;
+		text-align: center;
+	}
+
+	#circle_icon {
+		background: rgb(92, 92, 92);
+		display: flex;
+		align-items: center;
+		text-align: center;
+		position: relative;
+		border-radius: 50%;
+		width: 4vw;
+		height: 4vw;
+		overflow: hidden;
+		margin: auto;
+	}
+
+	.content h2 {
+		font-size: 12px;
+	}
+	.content h4 {
+		font-size: 10px;
+	}
+	.content p,
+	.content a {
+		font-size: 8px;
 	}
 }

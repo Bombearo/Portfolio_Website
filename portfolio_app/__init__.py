@@ -7,8 +7,9 @@ from flask_login import LoginManager
 db = SQLAlchemy()
 migrate = Migrate()
 login_manager = LoginManager()
-login_manager.login_view = 'login'
+login_manager.login_view = 'main.index'
 login_manager.login_message_category = 'info'
+login_manager.login_message = "You need to have authorised access to view this page"
 
 def create_app(config_class = Config):
     app = Flask(__name__)
@@ -16,7 +17,7 @@ def create_app(config_class = Config):
     
     db.init_app(app)
     migrate.init_app(app,db)
-    login_manager.init_app(app)
+    login_manager.init_app(app,db)
     
     from portfolio_app.main.routes import main
     from portfolio_app.users.routes import users

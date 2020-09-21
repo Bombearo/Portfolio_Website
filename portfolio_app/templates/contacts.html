@@ -20,6 +20,20 @@
                         {{ form.email(class="form-control form-control-lg") }}
                     {% endif %}
                 </div>
+                <div class="form-group">
+                    {{ form.github_profile.label(class="form-control-label") }}
+
+                    {% if form.github_profile.errors %}
+                        {{ form.github_profile(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.github_profile.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.github_profile(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
             <div class="form-group">
                 {{ form.submit(class="btn btn-outline-info") }}
             </div>

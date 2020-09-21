@@ -1,6 +1,7 @@
 import os
 from flask import render_template, url_for, flash, redirect, request, Blueprint, abort
-from flask_login import login_user, current_user, logout_user, login_required
+from flask_login import login_user, current_user, logout_user,login_required
+from flask_security import roles_required
 from portfolio_app import db
 from portfolio_app.app_functions.info import *
 from portfolio_app.app_functions.about import About
@@ -11,7 +12,6 @@ from portfolio_app.users.utils import *
 
 
 users = Blueprint('users', __name__)
-
 
 def restricted(access_level):
     def decorator(func):
@@ -56,6 +56,7 @@ def logout():
 
 @users.route("/admin", methods =['GET','POST'])
 @login_required
+@restricted(access_level='Admin')
 @password_change
 def admin():
     return render_template('admin.html', title='Account',user=current_user)
@@ -77,6 +78,7 @@ def project(project_id):
 
 @users.route("/admin/account", methods =['GET','POST'])
 @login_required
+@restricted(access_level='Admin')
 def account():
     form = UpdateAccountForm()
     if form.validate_on_submit():
@@ -97,6 +99,7 @@ def account():
 
 @users.route("/admin/about", methods=['GET', 'POST'])
 @login_required
+@restricted(access_level='Admin')
 @password_change
 def edit_about():
     form = EditAboutForm()
@@ -224,11 +227,13 @@ def update_contacts():
     path = os.getcwd()+'/portfolio_app'+url_for('static', filename='website_content/2_contact_me.txt')
     contacts = Contact(path)
     if form.validate_on_submit(): 
-        contacts.contact = form.email.data
+        contacts = Contact(path,form.email.data,form.github_profile.data)
         contacts.write_contact()
         flash('Contacts Successfully Updated!','success')
         return redirect(url_for('users.admin'))
     elif request.method == 'GET':
-        form.email.data = contacts.get_contacts()
+        c = contacts.get_contacts()
+        form.email.data = c[0]
+        form.github_profile.data = c[1]
 
     return render_template('contacts.html', form=form,user=user )
