@@ -86,7 +86,7 @@ def account():
         current_user.alias = form.name.data
         if form.password.data:
             current_user.set_password(form.password.data)
-        if form.picture.data:
+        if form.picture.data and allowed_file(form.picture.data):
             picture_file = save_image(form.picture.data,'profile_pics',720,720)
             current_user.profile_pic = picture_file
         db.session.commit()
