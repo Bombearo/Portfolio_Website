@@ -193,7 +193,7 @@ def update_project(project_id):
                 media = Portfolio_Media(thumbnail=media_file,project_id=project.id)
                 db.session.add(media)
                 db.session.commit()
-        flash('Project Successfully Updated!')
+        flash('Project Successfully Updated!','success')
         return redirect(url_for('users.admin'))
     elif request.method == 'GET':
         form.title.data = project.title
