@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="content-section">
+
+        <form name = 'account' method="POST" action="" enctype="multipart/form-data" onsubmit="validateForm()">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Account Info</legend>
+                <div class="form-group">
+                    {{ form.email.label(class="form-control-label") }}
+
+                    {% if form.email.errors %}
+                        {{ form.email(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.email.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.email(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+        </form>
+    </div>
+    
+{% endblock content %}
+
+
+{% block footer %}
+<script>
+    function myXOR(a,b) {
+  return ( a || b ) && !( a && b );
+}
+    function validateForm() {
+    var password = document.forms["account"]["password"].value;
+    var confirm_password = document.forms["account"]["confirm_password"].value;
+    if (myXOR(password,confirm_password)) {
+        alert("If you are changing password, both password and confirm password must be filled out");
+        return false;
+    }
+    } 
+</script>
+{% endblock footer %}

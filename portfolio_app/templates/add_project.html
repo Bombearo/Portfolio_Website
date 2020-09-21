@@ -12,7 +12,7 @@
         <form name ='about' method="POST" action="" enctype="multipart/form-data" onsubmit="return validateLinks()">
             {{ form.hidden_tag() }}
             <fieldset class="form-group">
-                <legend class="border-bottom mb-4">About Info</legend>
+                <legend class="border-bottom mb-4">{{legend}}</legend>
                 <div class="form-group">
                     {{ form.title.label(class="form-control-label") }}
 
@@ -49,23 +49,40 @@
                         {%endfor%}
                     {%endif%}
                 </div>
-                <div class="form-group buttons">
-                    {{ form.github_link.label(class="form-control-label") }}
-                    {% if form.github_link.errors %}
-                    {{ form.github_link(class="form-control form-control-lg is-invalid") }}
-                    <div class="invalid-feedback">
-                        {% for error in form.github_link.errors %}
-                        <span>{{ error }}</span>
-                        {% endfor %}
+                <div class ='buttons'>
+                    <div class="form-group">
+                        {{ form.github_link.label(class="form-control-label") }}
+                        {% if form.github_link.errors %}
+                        {{ form.github_link(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.github_link.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.github_link(class="form-control form-control-lg") }}
+                        {% endif %}
                     </div>
-                    {% else %}
-                    {{ form.github_link(class="form-control form-control-lg") }}
-                    {% endif %}
+                    
+                    <div class="form-group">
+                        {{ form.tags.label(class="form-control-label") }}
+                        {% if form.tags.errors %}
+                        {{ form.tags(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.tags.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.tags(class="form-control form-control-lg") }}
+                        {% endif %}
+                    </div>
                 </div>
                 
                 
+                
             </fieldset>
-            <div class="form-group">
+            <div class="form-group" style='margin: auto;'>
                 {{ form.submit(class="btn btn-outline-info") }}
             </div>
         </form>

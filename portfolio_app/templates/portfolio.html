@@ -1,4 +1,5 @@
 {% extends 'layout.html' %}
+{% from "macros.html" import display_projects with context %}
 {% block head %}{% endblock %}
 
 
@@ -55,7 +56,7 @@
             <!--About-->
             <div class="anchor_grid">
                 <a id = "{{about_me.id}}" class='nav-skip' href=""></a>
-                <div class="content" id='about_me'>
+                <div class="content" id='about_me' style='width:100%'>
                     <div class="image">
                         <div id="circle">
                             <img src="{{url_for('static', filename = 'profile_pics/'+user.profile_pic)}}" alt="My Picture!" class='image'>
@@ -81,40 +82,13 @@
             </div>
         </section>
 
-        <section id='my_projects' class = 'container'>
-            <div class = 'anchor_grid'>
-                <!--Projects-->
-                <a id = "projects" class='nav-skip' href = '' height='5vh'></a>
-                <div class="content">
-                    <h2>Projects</h2>
-                    {% for i in range(5) %}
-                    <div class="work row">
-                        <div class="image">
-                            <img src="{{ url_for('static', filename='images/Temp_Background.jpg') }}" alt="Work image" width='100%' height='auto'>
-                        </div>
-                        <div class="work_content">
-                            <div class='work_heading'>
-                                <h4>Temp Title</h4>
-                                <a href="">Link To Github</a>
-                            </div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id dictum nisi, eget malesuada ipsum. Nam nec metus a metus cursus gravida ut ac orci. Sed malesuada sem sit amet ex lobortis, eget faucibus arcu semper. Duis vitae lacus nec ipsum posuere congue sit amet at lacus. Sed arcu nulla, commodo sed nisi sed, consectetur convallis neque. Donec gravida gravida urna, vitae ultrices libero tempus accumsan. Etiam commodo commodo lacinia. Quisque lacinia cursus nisl at porttitor. Morbi ornare venenatis lectus non mollis. Proin ac magna blandit eros pellentesque mattis ultricies vitae enim. In euismod, turpis a ultrices luctus, sem risus vestibulum sem, vitae bibendum magna justo sed justo.</p>
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
-        </section>
-        <section>
-            <!--Experience and Study-->
-            {% for i in range(5) %}
-                <h1>{{i}}</h1>
-            {% endfor %}
-        </section>
+        {{display_projects()}}
+
         <section id='contact_me' class='container'>
             <!--Contact Me-->
             <div class="anchor_grid">
                 <a href="" id="contact" class="nav-skip" height='5vh'></a>
-                <div class="content">
+                <div class="content"  style='width:100%'>
                     <h2>Contact Me</h2>
                     <div class="contact_info" id="email">
                         <div style='display:flex;'>
@@ -124,7 +98,7 @@
                                 </div>
                                 
                             </div>
-                            <div class="icontext"><a href="mailto:shekjaden@gmail.com">shekjaden@gmail.com</a>
+                            <div class="icontext"><a href="mailto:shekjaden@gmail.com">{{contact}}</a>
                                 </div>
                         </div>
                     </div>

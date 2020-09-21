@@ -33,6 +33,7 @@ body {
 	font-weight: 400;
 	border: none;
 	color: #2a2929;
+	text-align: center;
 }
 
 body {
@@ -89,10 +90,15 @@ a:hover {
 }
 
 form {
+	text-align: left;
 	width: 70%;
 	margin: auto;
 }
 
+.content {
+	text-align: justify;
+	width: 100%;
+}
 /*======================
 	3. Layout
 =======================*/
@@ -148,10 +154,12 @@ nav {
 .anchor_grid .nav-skip {
 	grid-area: anchor;
 	height: 8vh;
+	width: 100%;
 }
 
 .anchor_grid .content {
 	grid-area: content;
+	width: 100vw;
 }
 
 #about_me {
@@ -184,14 +192,22 @@ nav {
 #my_projects {
 	display: flex;
 	flex-direction: column;
+	width: 100%;
 }
 
 #my_projects .work {
 	display: grid;
-	grid-template-columns: 1fr 1fr;
+	grid-template-columns: 50% 50%;
 	grid-template-rows: auto;
 	grid-template-areas: 'image content';
 	margin: 1vw;
+}
+
+#my_projects .image img {
+	max-height: 720px;
+	max-width: 1280px;
+	height: auto;
+	width: 100%;
 }
 
 .work_heading {
@@ -199,9 +215,9 @@ nav {
 	height: auto;
 }
 
-.work_heading h4 {
-	width: 50%;
-	text-align: left;
+.work_heading a {
+	margin: auto;
+	height: 100%;
 }
 
 .work .work_content {
@@ -440,6 +456,7 @@ button a {
 	}
 
 	#my_projects .work {
+		width: 100%;
 		display: grid;
 		grid-template-columns: auto;
 		grid-template-rows: auto;

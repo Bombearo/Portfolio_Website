@@ -1,0 +1,48 @@
+{% extends 'layout.html' %}
+{% from "macros.html" import display_project with context %}
+{% block head %}
+{% endblock %}
+
+
+{% block header%}
+
+{% endblock %}
+
+{% block content %}
+
+
+<section id='my_projects' class = 'container'>
+    {% if project.author == current_user.id %}
+    <div style='margin:auto'>
+        <a href="{{ url_for('users.update_project', project_id=project.id) }}" class='btn btn-sm mt-1 mb-1 btn-secondary'>Update</a>
+        <button type='button' class='btn btn-danger btn-sm m-1' data-toggle="modal" data-target="#deleteModal">Delete</button>
+    </div>
+    {% endif %}
+    <div class = 'anchor_grid'>
+        <!--Projects-->
+        <a id = "projects" class='nav-skip' href = '' height='5vh'></a>
+        <div class="content" style='width:100%'>
+            {{display_project(project)}}
+        </div>
+    </div>
+</section>
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteModalLabel">Delete Project?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <form action="{{url_for('users.delete_project',project_id = project.id)}}" method ='POST'>
+              <input class = 'btn-danger' type="submit" value="Delete">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+{% from "macros.html" import display_projects with context %}
+{% block head %}
+{% endblock %}
+
+
+{% block header%}
+
+{% endblock %}
+
+{% block content %}
+
+{% if current_user.is_authenticated %}
+    <h3>To make changes to a project, click on the project's title!</h3>
+    <a class='btn btn-info' href="{{url_for('users.new_project')}}" >Add a new project!</a>
+{% endif %}
+
+
+{{display_projects()}}
+
+{% endblock content %}

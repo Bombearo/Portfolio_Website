@@ -1,0 +1,50 @@
+{% macro display_project(project) %}
+<div class="work row">
+    <div class="image">
+        {% if project.thumbnails %}
+            {% if (project.thumbnails)|count > 1 %}
+            <div class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                <div class="carousel-item active image_item" data-interval='5000'>
+                    <img src="{{ url_for('static', filename='thumbnails/'+project.thumbnails[0].thumbnail) }}" alt="Work image">
+                </div>
+                {% for thumbnail in project.thumbnails[1:] %}
+
+                <div class="carousel-item image_item" data-interval='5000'>
+                    <img src="{{ url_for('static', filename='thumbnails/'+thumbnail.thumbnail) }}" alt="Work image" width = '100%' height ='auto'>
+                    </div>
+                {% endfor %}
+                
+                </div>
+            </div>
+            {% else %}
+            <img src="{{ url_for('static', filename='thumbnails/'+project.thumbnails[0].thumbnail) }}" alt="Work image" width='100%' height='auto'>
+            {% endif %}
+        {% else %}
+        <img src="{{ url_for('static', filename='thumbnails/default.jpg') }}" alt="Work image" width='100%' height='auto'>
+        {% endif %}
+    </div>
+    <div class="work_content">
+        <div class='work_heading'>
+            <a class='btn btn-heading' href="{{url_for('users.project',project_id=project.id)}}"><h4>{{project.title}}</h4></a>
+            <a class='btn btn-light' href="{{project.github_link}}">Link To Github</a>
+        </div>
+        <p>{{project.description}}</p>
+    </div>
+</div>
+{% endmacro %}
+
+{% macro display_projects() %}
+<section id='my_projects' class = 'container'>
+    <div class = 'anchor_grid'>
+        <!--Projects-->
+        <a id = "projects" class='nav-skip' href = '' height='5vh'></a>
+        <div class="content" style='width:100%'>
+            <h2>Projects</h2>
+            {% for project in projects %}
+                {{display_project(project)}}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endmacro %}

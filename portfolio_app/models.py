@@ -48,10 +48,11 @@ class Portfolio(db.Model):
     __tablename__ = 'portfolio'
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(64), index=True, unique=True)
-    description = db.Column(db.String(2000), index=True, unique=True)
+    description = db.Column(db.String(2000), index=True)
     github_link = db.Column(db.String(64), index=True, unique=True)
     author = db.Column(db.Integer, db.ForeignKey('users.id'))
     tags = db.relationship('Portfolio_tags', secondary=project_tags, backref = db.backref("project_tags", lazy=True))
+    thumbnails = db.relationship("Portfolio_Media", backref="media", lazy='dynamic')
 
     def __repr__(self):
         return f'<Project {self.title}>'

@@ -13,7 +13,7 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Login')
 
 class EditAboutForm(FlaskForm):
-    first_line = StringField('Opening', validators=[DataRequired()])
+    first_line = StringField('Opening', validators=[DataRequired(), Length(min=10,max=100)])
     about = TextAreaField('About Description', validators=[DataRequired(),], render_kw={'rows':'4','cols':'100','maxlength':4000})
     profile_pic = FileField('Insert Image:', validators=[FileAllowed(['jpg','png'])])
     button_1_link = StringField('Link for first Button')
@@ -25,9 +25,10 @@ class EditAboutForm(FlaskForm):
 
 class PortfolioForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
-    description = TextAreaField('Content', validators=[DataRequired()], render_kw={'rows':'4','cols':'100','maxlength':2000})
+    description = TextAreaField('Project Description (500 Chars)', validators=[DataRequired()], render_kw={'maxlength':500})
     github_link = StringField('Insert Link to Github: ', validators=[DataRequired()])
     thumbnails = MultipleFileField('Upload new Thumbnails (1028x720px recommended - unable to change): ', render_kw={'multiple':True})
+    tags = StringField('Tags (Enter keywords separated by spaces for your project)')
     submit = SubmitField('Post')
 
 class UpdateAccountForm(FlaskForm):
@@ -53,3 +54,7 @@ class UpdateAccountForm(FlaskForm):
 class ConfirmChanges(FlaskForm):
     password = PasswordField('Enter password to confirm changes', validators=[DataRequired()])
     submit = SubmitField('Confirm Changes')
+
+class UpdateContactForm(FlaskForm):
+    email = StringField('Email',validators=[DataRequired(), Length(min=2, max=50),Email()])
+    submit=SubmitField('Update Contacts')
