@@ -234,6 +234,6 @@ def update_contacts():
     elif request.method == 'GET':
         c = contacts.get_contacts()
         form.email.data = c[0]
-        form.github_profile.data = c[1]
+        form.github_profile.data = c[1].split('/')[-1]
 
     return render_template('contacts.html', form=form,user=user )

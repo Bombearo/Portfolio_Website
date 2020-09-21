@@ -1,6 +1,8 @@
 class Contact:
     def __init__(self, path, email='tempEmail@outlook.co.uk',github = 'Temp'):
         self.email = email
+        if r'https://github.com' in github:
+            self.github = github 
         self.github= r'https://github.com/'+github
         self.path = path
     
