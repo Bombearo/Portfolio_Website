@@ -17,4 +17,4 @@ def index():
     projects =Portfolio.query.all()
     my_projects = get_projects(projects)
     contacts = retrieve_contacts(c_path)
-    return render_template('portfolio.html',nav = nav, about_me=about_me, slider=slider, user = user,projects=my_projects, contact=contacts)
+    return render_template('portfolio.html',title = 'Home', nav = nav, about_me=about_me, slider=slider, user = user,projects=my_projects, contact=contacts)
