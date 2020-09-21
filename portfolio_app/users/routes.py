@@ -187,9 +187,9 @@ def update_project(project_id):
         thumbnails = request.files.getlist('thumbnails')
    
         for thumbnail in thumbnails:
+            print(thumbnail)
             if thumbnail and allowed_file(thumbnail.filename):
-                filename = secure_filename(thumbnail.filename)
-                media_file = save_image(filename,'thumbnail',1280,720)
+                media_file = save_image(thumbnail,'thumbnails',1280,720)
                 media = Portfolio_Media(thumbnail=media_file,project_id=project.id)
                 db.session.add(media)
                 db.session.commit()
